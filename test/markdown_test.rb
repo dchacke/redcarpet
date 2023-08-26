@@ -464,4 +464,20 @@ class MarkdownTest < Redcarpet::TestCase
 
     assert_match /<table>/, output
   end
+
+  def test_skip
+    markdown = '% *foo*'
+    output = render(markdown)
+
+    assert_equal markdown, output
+  end
+
+  def test_nested_skip
+    markdown = '>% *foo*'
+    output = render(markdown)
+
+    assert_equal '<blockquote>
+% *foo*
+</blockquote>', output
+  end
 end
