@@ -2461,6 +2461,23 @@ parse_block(struct buf *ob, struct sd_markdown *rndr, uint8_t *data, size_t size
 		txt_data = data + beg;
 		end = size - beg;
 
+		// If line starts with a %-sign, output it as-is.
+		if (data[beg] == '%') {
+			size_t next_newline = beg;
+
+			// Find the next newline character to get the whole line.
+			while (next_newline < size && data[next_newline] != '\n') {
+				next_newline++;
+			}
+
+			// Output the line as-is (including the %-sign).
+			bufput(ob, data + beg, next_newline - beg + 1);
+
+			// Move to the next line.
+			beg = next_newline + 1;
+			continue;
+		}
+
 		if (is_atxheader(rndr, txt_data, end))
 			beg += parse_atxheader(ob, rndr, txt_data, end);
 
