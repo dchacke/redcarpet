@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 5.0.0
+
+* Return lines starting with % as is.
+
+  *Dennis Hackethal*
+
 ## Version 4.0.0
 
 * Unobtrusively support the breaking up of ordered lists without resetting their indices/steps.
