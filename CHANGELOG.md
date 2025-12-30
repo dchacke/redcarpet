@@ -14,6 +14,14 @@
 
   *Dennis Hackethal*
 
+## Version 3.6.1
+
+* Migrate Markdown objects to the `TypedData` API.
+
+  Refs #785.
+
+  *Jean Boussier*
+
 ## Version 3.6.0
 
 * Avoid warnings running on Ruby 3.2+.

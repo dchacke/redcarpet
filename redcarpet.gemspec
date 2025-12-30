@@ -1,13 +1,12 @@
-# encoding: utf-8
 Gem::Specification.new do |s|
   s.name = 'redcarpet'
   s.version = '5.0.0-merge-from-origin-2024-11-08'
-  s.summary = "Markdown that smells nice"
+  s.summary = 'Markdown that smells nice'
   s.description = 'A fast, safe and extensible Markdown to (X)HTML parser'
   s.date = '2023-08-25'
   s.email = 'vicent@github.com'
   s.homepage = 'https://github.com/vmg/redcarpet'
-  s.authors = ["Natacha Porté", "Vicent Martí"]
+  s.authors = ['Natacha Porté', 'Vicent Martí']
   s.license = 'MIT'
   s.required_ruby_version = '>= 1.9.2'
   # = MANIFEST =
@@ -48,12 +47,12 @@ Gem::Specification.new do |s|
   ]
   # = MANIFEST =
   s.test_files = s.files.grep(%r{^test/})
-  s.extra_rdoc_files = ["COPYING"]
-  s.extensions = ["ext/redcarpet/extconf.rb"]
-  s.executables = ["redcarpet"]
-  s.require_paths = ["lib"]
+  s.extra_rdoc_files = ['COPYING']
+  s.extensions = ['ext/redcarpet/extconf.rb']
+  s.executables = ['redcarpet']
+  s.require_paths = ['lib']
 
-  s.add_development_dependency "rake", "~> 13"
-  s.add_development_dependency "rake-compiler", "~> 1.1"
-  s.add_development_dependency "test-unit", "~> 3.5"
+  s.add_development_dependency 'rake', '~> 13'
+  s.add_development_dependency 'rake-compiler', '~> 1.1'
+  s.add_development_dependency 'test-unit', '~> 3.5'
 end

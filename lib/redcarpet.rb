@@ -9,7 +9,6 @@ module Redcarpet
   end
 
   module Render
-
     # XHTML Renderer
     class XHTML < HTML
       def initialize(extensions = {})
@@ -36,10 +35,10 @@ module Redcarpet
         }.merge(extensions))
       end
 
-      def block_code(code, lang)
-        "<pre>" \
+      def block_code(code, _lang)
+        '<pre>' \
           "<code>#{html_escape(code)}</code>" \
-        "</pre>"
+        '</pre>'
       end
 
       private
@@ -48,14 +47,14 @@ module Redcarpet
       # are duplicating existing code from Houdini. This method
       # should be defined at the C level.
       def html_escape(string)
-        string.gsub(/['&\"<>\/]/, {
-          '&' => '&amp;',
-          '<' => '&lt;',
-          '>' => '&gt;',
-          '"' => '&quot;',
-          "'" => '&#x27;',
-          "/" => '&#x2F;',
-        })
+        string.gsub(%r{['&"<>/]}, {
+                      '&' => '&amp;',
+                      '<' => '&lt;',
+                      '>' => '&gt;',
+                      '"' => '&quot;',
+                      "'" => '&#x27;',
+                      '/' => '&#x2F;'
+                    })
       end
     end
 
