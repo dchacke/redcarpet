@@ -2483,17 +2483,26 @@ parse_block(struct buf *ob, struct sd_markdown *rndr, uint8_t *data, size_t size
 		txt_data = data + beg;
 		end = size - beg;
 
-		// If line starts with a %-sign, output it as-is.
+		// If line starts with a %-sign, output it without parsing it as markdown.
 		if (data[beg] == '%') {
 			size_t next_newline = beg;
+			struct buf work = { 0, 0, 0, 0 };
 
 			// Find the next newline character to get the whole line.
 			while (next_newline < size && data[next_newline] != '\n') {
 				next_newline++;
 			}
 
-			// Output the line as-is (including the %-sign).
-			bufput(ob, data + beg, next_newline - beg + 1);
+			// The whole line (including the %-sign and the newline, if any).
+			work.data = data + beg;
+			work.size = (next_newline < size ? next_newline + 1 : size) - beg;
+
+			// Output the line as text, so the renderer can escape it. Writing it
+			// as-is would let users inject HTML.
+			if (rndr->cb.normal_text)
+				rndr->cb.normal_text(ob, &work, rndr->opaque);
+			else
+				bufput(ob, work.data, work.size);
 
 			// Move to the next line.
 			beg = next_newline + 1;

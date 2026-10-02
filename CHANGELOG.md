@@ -1,5 +1,16 @@
 # Changelog
 
+## Version 5.0.1
+
+* Escape lines starting with % instead of returning them as is, so they can't
+  be used to inject HTML. Callers that parse these lines from the output now
+  receive them escaped by the renderer.
+
+* Fix a one-byte read past the end of the input when a line starting with %
+  has no trailing newline.
+
+  *Dennis Hackethal*
+
 ## Version 5.0.0
 
 * Return lines starting with % as is.

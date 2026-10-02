@@ -480,4 +480,18 @@ class MarkdownTest < Redcarpet::TestCase
 % *foo*
 </blockquote>', output
   end
+
+  def test_skip_escapes_html
+    output = render('% <b>foo</b> & "bar"')
+
+    assert_equal '% &lt;b&gt;foo&lt;/b&gt; &amp; &quot;bar&quot;', output
+  end
+
+  def test_nested_skip_escapes_html
+    output = render('>% <a href="https://example.com">foo</a>')
+
+    assert_equal '<blockquote>
+% &lt;a href=&quot;https://example.com&quot;&gt;foo&lt;/a&gt;
+</blockquote>', output
+  end
 end
